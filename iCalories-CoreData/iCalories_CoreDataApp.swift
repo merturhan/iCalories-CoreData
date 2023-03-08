@@ -10,12 +10,13 @@ import SwiftUI
 @main
 struct iCalories_CoreDataApp: App {
     
-    @State private var dataController = DataController()
+    @StateObject private var dataController = DataController()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environment(\.managedObjectContext,
+                              dataController.container.viewContext)
         }
     }
 }
