@@ -27,20 +27,20 @@ struct ContentView: View {
                 
                 List{
                     ForEach(food) { food in
-                        NavigationLink(destination: Text("\(food.calories)")){
-                            HStack{
-                                VStack(alignment: .leading){
-                                    Text("\(food.name!)")
+                        NavigationLink(destination: EditFoodView(food: food)) {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 6) {
+                                    Text(food.name!)
                                         .bold()
-                                    
+        
                                     Text("\(Int(food.calories))") + Text(" calories").foregroundColor(.red)
                                 }
+                                Spacer()
+                                Text(calcTimeSince(date: food.date!))
+                                    .foregroundColor(.gray)
+                                    .italic()
                             }
-                            Spacer()
-                            Text(calcTimeSince(date: food.date!))
-                                .foregroundColor(.gray)
-                                .italic()
-                        }
+                        } 
                     }.onDelete(perform: deleteFood)
                 }.listStyle(.plain)
                 
